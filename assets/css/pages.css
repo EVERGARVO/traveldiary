@@ -1,6 +1,6 @@
 /* 일본 페이지 배경 */
 body.japan-background {
-    background-image: url(assets/images/paper.jpg);
+    background-image: url(../images/paper.jpg);
     background-size: cover;
     background-position: center;
 }
