@@ -1,0 +1,51 @@
+
+<header>
+    <nav id="main-nav">
+        <!-- 기존 내비게이션 내용 -->
+        <div class="container">
+            <div class="header-content">
+                <h1 id="header-title">loading...</h1>
+                <div class="nav-buttons">
+                <a href="index.html" id="home-button">Home</a>
+                    <!-- 드롭다운 메뉴 버튼 추가 -->
+                    <div class="dropdown">
+                        <a class="dropbtn">Menu</a>
+                        <div class="dropdown-content">
+                            <!--<a href="korea.html" class="submenu-toggle">국내여행</a>
+                            <a href="japan.html">Item 2</a>-->
+                            <div class="dropdown-submenu" id="submenu01">
+                                <a href="#" data-person="korea">국내여행</a>
+                                <div class="dropdown-submenu-content" id="submenu-content01">
+                                    <a href="/pages/korea/jeju/jeju_index.html">제주도</a>
+                                    <a href="/pages/korea/busan/busan_index.html">부산</a>
+                                </div>
+                            </div>
+                            <div class="dropdown-submenu" id="submenu02">
+                                <a href="#" data-person="japan">일본여행</a>
+                                <div class="dropdown-submenu-content" id="submenu-content02">
+                                    <a href="/pages/japan/osaka/osaka_index.html">오사카</a>
+                                    <a href="/pages/japan/tokyo/tokyo_index.html">도쿄</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 목차 토글 버튼 (삼선 메뉴) -->
+    <div class="menu-toggle" onclick="toggleToc()">
+        <span id="menu-icon">&#9776;</span> <!-- 삼선 아이콘 -->
+        <span id="close-icon" style="display: none;">&#10006;</span> <!-- X 아이콘, 초기에는 숨김 -->
+    </div>
+
+    <!-- 목차 창 -->
+    <nav id="toc" class="toc-container">
+        <div class="toc-content">
+            <h2>Table of Contents</h2>
+            <ul id="tocList">
+                <!-- 자동 생성된 목차 항목들이 여기 삽입됩니다 -->
+            </ul>
+        </div>
+    </nav>
+</header>

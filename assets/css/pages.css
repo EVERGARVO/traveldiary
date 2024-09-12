@@ -1,0 +1,13 @@
+/* 일본 페이지 배경 */
+body.japan-background {
+    background-image: url(/assets/images/paper.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* 한국 페이지 배경 */
+body.korea-background {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+}
