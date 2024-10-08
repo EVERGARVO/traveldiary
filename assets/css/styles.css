@@ -21,7 +21,7 @@ body {
 /* 메인 콘텐츠 스타일 */
 main {
     flex-grow: 1; /* 메인 콘텐츠가 남은 공간을 차지하도록 설정 */
-    padding: 120px 20px 20px; /* 고정된 헤더와 겹치지 않도록 상단 패딩 추가 */
+    padding: 100px 0px 0px; /* 고정된 헤더와 겹치지 않도록 상단 패딩 추가 */
 }
 
 /* 메인 컨테이너 설정 */
@@ -35,7 +35,7 @@ header {
     /*background-color: #343a40;*/
     background-color: rgba(128, 128, 128, 0.9);
     color: #ffffff;
-    padding: 10px 0;
+    padding: 25px 0;
     border-bottom: 1px solid #495057;
     position: fixed; /* 헤더를 고정시킴 */
     top: 0;
@@ -44,14 +44,14 @@ header {
     left: 0; /* 수평 위치 설정 */
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    /*transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
 }
 
-header:hover {
+/*header:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     background-color: #343a40;
-    padding: 20px 0;
-}
+    padding: 30px 0;
+}*/
 
 .container {
     display: flex;
@@ -176,7 +176,7 @@ footer {
     color: #ffffff;
     padding: 10px 20px;
     text-align: center;
-    border-top: 2px solid #495057;
+    border-top: 1px solid #495057;
     margin-top: auto; /* 푸터가 항상 페이지의 가장 하단에 위치하도록 설정 */
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -414,6 +414,32 @@ footer {
     transform: translateX(0);
 }
 
+/* 기본 스타일 */
+.toc-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.toc-container li {
+    margin: 5px 0;
+}
+
+/* data-depth에 따른 들여쓰기 조정 */
+.toc-container li[data-depth="1"] {
+    padding-left: 20px;
+}
+
+.toc-container li[data-depth="2"] {
+    padding-left: 40px;
+}
+
+.toc-container li[data-depth="3"] {
+    padding-left: 60px;
+}
+
+/* 필요시 더 많은 depth에 대해 설정 가능 */
+
+
 .toc-content {
     padding: 20px;
 }
@@ -459,7 +485,7 @@ footer {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    scroll-margin-top: 80px; /* 필요에 따라 조정 */
+    scroll-margin-top: 100px; /* 필요에 따라 조정 */
 }
 
 /* 목차 항목 하이라이트 스타일 */
@@ -718,6 +744,157 @@ a {
     display: none;
 }
 
+/* 페이지네이션 버튼 컨테이너 */
+.pagination-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* 점 아이콘 스타일 */
+.pagination-icon {
+    width: 40px; /* 아이콘 크기 */
+    height: 40px; /* 아이콘 크기 */
+    background-color: #343a40bc;
+    border-radius: 50%; /* 원 모양 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative; /* X 모양을 위한 포지션 설정 */
+}
+
+/* 점 아이콘 안의 점 */
+.dot-icon {
+    width: 12px; /* 점 크기 */
+    height: 12px; /* 점 크기 */
+    background-color: white;
+    border-radius: 50%; /* 원 모양 */
+    transition: background-color 0.3s ease;
+}
+
+/* X 모양으로 변경되는 스타일 */
+.pagination-icon:hover {
+    background-color: #0056b3; /* 아이콘 색상 변경 */
+}
+
+.pagination-icon.active .dot-icon {
+    background-color: transparent; /* 점을 투명하게 만들기 */
+}
+
+.pagination-icon.active::before,
+.pagination-icon.active::after {
+    content: '';
+    position: absolute;
+    width: 24px; /* 선 길이 */
+    height: 2px; /* 선 두께 */
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+/* X 모양의 첫 번째 선 */
+.pagination-icon.active::before {
+    transform: rotate(45deg); /* 선을 대각선으로 회전 */
+}
+
+/* X 모양의 두 번째 선 */
+.pagination-icon.active::after {
+    transform: rotate(-45deg); /* 선을 대각선으로 회전 */
+}
+
+/* 페이지네이션 버튼 숨기기 및 활성화 */
+.pagination-buttons {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.pagination-buttons.show {
+    display: flex;
+}
+
+/* 버튼 스타일 */
+.pagination-button {
+    background-color: #343a40bc;
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative; /* 텍스트 위치 조정 */
+    overflow: hidden;
+}
+
+/* Prev 버튼 텍스트 설정 */
+.pagination-button.prev::after {
+    content: 'Previous'; /* 이전 버튼 텍스트 설정 */
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Next 버튼 텍스트 설정 */
+.pagination-button.next::after {
+    content: 'Next'; /* 다음 버튼 텍스트 설정 */
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pagination-button:hover {
+    background-color: #0056b3; /* 아이콘 색상 변경 */
+}
+
+/* 헤더 아이콘 스타일 */
+.header-icon {
+    position: absolute;
+    top: 8px; /* 헤더의 높이에 맞춰 조정 */
+    right: 0px; /* 오른쪽 끝에 위치 */
+}
+
+.header-icon a {
+    display: inline-block;
+}
+
+.home-icon {
+    width: 52px;  /* 아이콘 크기 조정 */
+    height: 52px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.home-icon:hover {
+    width: 58px;  /* 아이콘 크기 조정 */
+    height: 58px;
+}
+
+/* 서브메뉴 스타일 */
+.submenu {
+    display: none;
+    padding-left: 20px;
+}
+
+.toc-content ul li a {
+    cursor: pointer;
+}
+
+/* 서브메뉴 활성화 시 스타일 */
+.submenu.show {
+    display: block;
+}
+
 
 /* 반응형 디자인을 위한 미디어 쿼리 */
 @media (max-width: 1024px) {
@@ -727,6 +904,10 @@ a {
 }
 
 @media (max-width: 768px) {
+    header {
+        padding: 20px 0;
+    }
+
     .container {
         flex-direction: column;
     }
@@ -781,7 +962,7 @@ a {
     }
 
     .toc-container {
-        width: 240px;
+        width: 230px;
     }
 
     .video-container {
@@ -832,7 +1013,7 @@ a {
 
 @media (max-width: 480px) {
     header {
-        padding: 15px 0;
+        padding: 20px 0;
     }
 
     #header-title {
@@ -881,7 +1062,7 @@ a {
     }
 
     .toc-container {
-        width: 250px;
+        width: 220px;
     }
 
     .video-container {

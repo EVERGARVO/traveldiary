@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const page = urlParams.get('page');
+    // body 태그의 data-page 속성 값 읽기
+    const pageType = document.body.getAttribute('data-page');
+    
+    // 기존 배경 스타일을 초기화
+    document.body.className = ''; // body의 모든 클래스를 제거
 
-    // 기존 배경 스타일 제거
-    document.body.classList.remove('japan-background', 'korea-background');
-
-    // 페이지에 맞는 배경 스타일 추가
-    if (page === 'japan') {
-        document.body.classList.add('japan-background');
-    } else if (page === 'korea') {
-        document.body.classList.add('korea-background');
+    // 페이지 타입에 맞는 배경 스타일 추가
+    if (pageType) {
+        document.body.classList.add(`${pageType}-background`);
     }
 });
+

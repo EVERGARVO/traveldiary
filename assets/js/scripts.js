@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 페이지 로드 시 목차 생성
             generateTOC();
+
+            // 데이터 속성 링크 초기화
+            initializeLinks();
         });
 
     fetch('includes/footer.html')
@@ -26,15 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const page = urlParams.get('page');
 
     if (page) {
+        // page 값이 하위 폴더에 있는지 여부 확인
+        let pagePath;
+        if (links[page]) {
+            // links 객체에서 정확한 경로 설정
+            pagePath = links[page];
+        } else {
+            // 기본적으로 pages 폴더에서 불러오기
+            pagePath = `pages/${page}.html`;
+        }
+
         // 페이지 본문을 동적으로 로드
-        fetch(`pages/${page}.html`)
+        fetch(pagePath)
             .then(response => response.text())
             .then(data => {
                 const mainContent = document.getElementById("main-content");
-                // 본문 내용을 덮어씌우기 전에 초기화
                 mainContent.innerHTML = '';
 
-                // 본문 내용 추가
                 mainContent.innerHTML = data;
 
                 // 본문에서 첫 번째 h 태그를 찾아서 제목으로 설정
@@ -72,13 +83,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 코멘트 폼 초기화
                 initializeCommentForms();
+
+                // **배경 스타일 동적 적용**
+                const pageType = mainContent.querySelector('main')?.getAttribute('data-page');
+                document.body.classList.forEach(className => {
+                    if (className.endsWith('-background')) {
+                        document.body.classList.remove(className);
+                    }
+                });
+
+                if (pageType) {
+                    document.body.classList.add(`${pageType}-background`);
+                }
             })
             .catch(error => console.error('Error loading content:', error));
+    } else {
+        // 페이지가 index.html인 경우 데이터 속성 링크 초기화
+        initializeLinks();
     }
 
     // 페이지 로딩 시 본문에 페이드 인 효과 추가
     document.body.classList.add('fade-in');
 });
+
+
 
 function initializeCommentForms() {
     document.querySelectorAll('.comment-container').forEach(container => {
@@ -281,6 +309,12 @@ function toggleToc() {
     }
 }
 
+// 서브메뉴를 토글하는 함수
+function toggleSubmenu(submenuId) {
+    const submenu = document.getElementById(submenuId);
+    submenu.classList.toggle('show');
+}
+
 // Close the Table of Contents if the user clicks outside of it
 document.addEventListener('click', (event) => {
     const toc = document.getElementById('toc');
@@ -342,7 +376,18 @@ function generateTOC() {
         }
         stack.push(item);
     });
+
+    // 서브메뉴 항목 클릭 시 이동을 방지하고 토글만 실행
+    const submenuLinks = document.querySelectorAll('.submenu-toggle');
+    submenuLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // 링크 기본 동작(페이지 이동) 방지
+            const submenuId = this.dataset.submenuId; // 클릭된 항목의 서브메뉴 ID 가져오기
+            toggleSubmenu(submenuId); // 서브메뉴 토글
+        });
+    });
 }
+
 
 
 
@@ -520,24 +565,29 @@ function initializeForms() {
         }, 10000);
       });*/
 
-
-    //드롭다운메뉴
-    function toggleDropdown() {
-        document.getElementById("myDropdown").classList.toggle("show");
+    
+    // 페이지 로드 시 아이콘을 X 모양으로 변경
+    const icon = document.querySelector('.pagination-icon');
+    if (icon) {
+        icon.classList.add('active');
     }
 
-    // 드롭다운 외부를 클릭했을 때 닫히게 하는 기능
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
+    // 페이지네이션 버튼 토글
+    function togglePagination() {
+        const icon = document.querySelector('.pagination-icon');
+        const buttons = document.querySelector('.pagination-buttons');
+        
+        if (icon) {
+            icon.classList.toggle('active'); // 아이콘 상태 변경
+        }
+        
+        if (buttons) {
+            buttons.classList.toggle('show'); // 버튼 표시/숨기기
         }
     }
+
+
+
 
     // script.js
 
@@ -557,3 +607,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+

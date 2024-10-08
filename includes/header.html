@@ -1,51 +1,55 @@
-
 <header>
     <nav id="main-nav">
         <!-- 기존 내비게이션 내용 -->
         <div class="container">
             <div class="header-content">
                 <h1 id="header-title">loading...</h1>
-                <div class="nav-buttons">
-                <a href="index.html" id="home-button">Home</a>
-                    <!-- 드롭다운 메뉴 버튼 추가 -->
-                    <div class="dropdown">
-                        <a class="dropbtn">Menu</a>
-                        <div class="dropdown-content">
-                            <!--<a href="korea.html" class="submenu-toggle">국내여행</a>
-                            <a href="japan.html">Item 2</a>-->
-                            <div class="dropdown-submenu" id="submenu01">
-                                <a href="#" data-person="korea">국내여행</a>
-                                <div class="dropdown-submenu-content" id="submenu-content01">
-                                    <a href="/pages/korea/jeju/jeju_index.html">제주도</a>
-                                    <a href="/pages/korea/busan/busan_index.html">부산</a>
-                                </div>
-                            </div>
-                            <div class="dropdown-submenu" id="submenu02">
-                                <a href="#" data-person="japan">일본여행</a>
-                                <div class="dropdown-submenu-content" id="submenu-content02">
-                                    <a href="/pages/japan/osaka/osaka_index.html">오사카</a>
-                                    <a href="/pages/japan/tokyo/tokyo_index.html">도쿄</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </div>
         </div>
     </nav>
 
-    <!-- 목차 토글 버튼 (삼선 메뉴) -->
+    <!-- 목차 및 메뉴 토글 버튼 -->
     <div class="menu-toggle" onclick="toggleToc()">
         <span id="menu-icon">&#9776;</span> <!-- 삼선 아이콘 -->
         <span id="close-icon" style="display: none;">&#10006;</span> <!-- X 아이콘, 초기에는 숨김 -->
     </div>
 
-    <!-- 목차 창 -->
+    
+
+    <!-- 목차 및 메뉴 창 -->
     <nav id="toc" class="toc-container">
         <div class="toc-content">
             <h2>Table of Contents</h2>
             <ul id="tocList">
                 <!-- 자동 생성된 목차 항목들이 여기 삽입됩니다 -->
             </ul>
+
+            <h2>Menu</h2>
+            <ul id="menuList">
+                <li>
+                    <a href="#" class="submenu-toggle" data-subme-id="submenu01" onclick="toggleSubmenu('submenu01')">>여행지</a>
+                    <ul id="submenu01" class="submenu">
+                        <li data-depth="1"><a href="#" data-person="korea">국내여행</a></li>
+                            <li data-depth="2"><a href="#" data-person="jeju">제주도</a></li>
+                            <li data-depth="2"><a href="#" data-person="busan">부산</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleSubmenu('submenu02')">>퀴즈</a>
+                    <ul id="submenu02" class="submenu">
+                        <li data-depth="1"><a href=""></a></li>
+                        <li><a href="/pages/japan/tokyo/tokyo_index.html">도쿄</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
+
+    <!-- index.html로 이동하는 아이콘 -->
+    <div class="header-icon">
+        <a href="index.html">
+            <img src="assets/images/favicon.ico" alt="Home Icon" class="home-icon">
+        </a>
+    </div>
+
 </header>

@@ -1,83 +1,24 @@
-    <main>
-        <!-- 상세 내용 -->
-        <section class="details-section">
-            <div class="text-box-container"></div>
-            <img src="assets/images/alex/alex01.jpg" alt="Person 1">
-            <h1 id="h-alex01">알렉스</h1>
-            <textarea id="text-box-alex01" class="text-box" placeholder="여기에 내용을 입력하세요..."></textarea>
-            <p>이제부터 <a href="#" data-person="noah">성경 인물</a> 카드를 만들어보겠습니다!<a href="#" data-popup="popup-alex01" class="popup-link">창세기 6:9</a></p>
-                <textarea id="text-box-alex02" class="text-box" placeholder="여기에 내용을 입력하세요..."></textarea>
-                <!-- 추가 텍스트 박스 -->
-            </div>
+<h1 class="hidden-title">국내여행</h1>
+<main data-page="japan">
+    <!-- 카드 섹션 -->
+    <section class="card-section">
+        <a href="#" data-person="busan" class="card">
+            <img src="assets/images/alex/alex01.jpg" alt="알렉스">
+            <h2 id="h-noah">부산</h2>
+            <p>...</p>
+        </a>
+        <a href="#" data-person="jeju" class="card">
+            <img src="assets/images/noah/noah_01.jpg" alt="노아">
+            <h2 id="h-noah">제주도</h2>
+            <p>도쿄, ???</p>
+        </a>
+        <!-- 추가 카드
+        <a href="#" data-person="noah" class="card">
+            <img src="assets/images/noah/noah_01.jpg" alt="노아">
+            <h2 id="h-jonah">??</h2>
+            <p>실수를 통해</p>
+            <p>자비를 배운 예언자</p>-->
+        </a>
+    </section>
 
-            <!-- 첫 번째 캐러셀 -->
-            <div class="carousel" id="carousel_alex01">
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/images/alex/alex02.jpg" alt="알렉스와 모자">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/alex/alex03.jpg" alt="알렉스와 모자">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/alex/alex04.jpg" alt="알렉스와 모자">
-                </div>
-                </div>
-                <a class="carousel-control prev" onclick="prevSlide('carousel_alex01')">&#10094;</a>
-                <a class="carousel-control next" onclick="nextSlide('carousel_alex01')">&#10095;</a>
-                <!-- 인디케이터 컨테이너 (고유한 ID가 없어도 됨) -->
-                <div class="carousel-indicators" id="carousel_alex01-indicators"></div>
-            </div>
-
-            <div class="video-container">
-                <video id="myVideo" controls>
-                    <source src="video/jesus01.mp4" type="video/mp4">
-                    <track id="myTrack" src="vtt/pkon_KO_007_r720P.vtt" kind="subtitles" srclang="en" label="Korea" default>
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            
-        
-
-            <div class="comment-container" data-form-id="alex01"></div>
-
-            
-            <!-- 두 번째 폼
-            <div class="message" data-form-id="alex02"></div>
-            <div class="comments" data-form-id="alex02"></div>
-            <form data-form-id="alex02">
-                <input type="text" placeholder="Your Name" required>
-                <textarea placeholder="Your Comment" required></textarea>
-                <button type="submit">Submit</button>
-            </form>-->
-            
-
-
-        </section>
-
-        
-
-    </main>
-    <!-- 팝업 모달 1 -->
-    <div id="popup-alex01" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="modal-title no-toc">팝업 제목 1</h2>
-            <div class="modal-body">
-                <p>여기에는 팝업 1의 내용이 들어갑니다.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- 팝업 모달 2 -->
-    <div id="popup-alex02" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="modal-title">팝업 제목 2</h2>
-            <div class="modal-body">
-                <p>여기에는 팝업 2의 내용이 들어갑니다.</p>
-            </div>
-        </div>
-    </div>
-
-    
+</main>

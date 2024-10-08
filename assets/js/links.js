@@ -1,10 +1,16 @@
 const links = {
     korea: 'pages/korea.html',
         busan: 'pages/korea/busan.html',
+            busan241003: 'pages/korea/busan/busan241003',
+            busan241004: 'pages/korea/busan/busan241004',
+            busan241005: 'pages/korea/busan/busan241005',
         jeju: 'pages/korea/jeju',
     japan: 'pages/japan.html',
         osaka: 'pages/japan/osaka.html',
+            osaka01: 'pages/japan/osaka/osaka01.html',
+            osaka02: 'pages/japan/osaka/osaka02.html',
         tokyo: 'pages/japan/tokyo.html',
+            tokyo01: 'pages/japan/tokyo/tokyo01.html',
         
 };
 
@@ -25,15 +31,8 @@ function initializeLinks() {
             link.addEventListener('click', function(event) {
                 event.preventDefault(); // 기본 링크 이동 방지
 
-                const url = `template.html?page=${person}`;
-                
-                // target 속성을 체크하여 새 탭에서 열지 여부를 결정
-                const target = link.getAttribute('target');
-                if (target === '_blank') {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                } else {
-                    window.location.href = url;
-                }
+                // 동적 링크를 설정하여 페이지를 로드합니다.
+                window.location.href = `template.html?page=${person}`;
             });
         }
     });

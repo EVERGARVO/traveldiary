@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('password-form');
     const passwordInput = document.getElementById('password-input');
     const errorMessage = document.getElementById('error-message');
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbxLs_-cayu80CI5i2ObrvZPWR57uH6ayDJobYoESPl0d9twjIHosljObqEZRC-_dx8T/exec'; // 위에서 제공받은 구글 앱 스크립트 웹 앱 URL로 교체
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzDyPo_ZPVE4x86ZhXmVaZugJJf20T1LIyPfh0BF_fzrNAyLavcO3BtFkyHOJpZC8yz/exec'; // 위에서 제공받은 구글 앱 스크립트 웹 앱 URL로 교체
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
